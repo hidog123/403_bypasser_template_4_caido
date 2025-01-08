@@ -1,0 +1,12 @@
+id: content-0 
+description: "change content lenght to 0"
+enabled: true
+modificationScript: >
+  const newRequest = helper.setMethod(input, () => "POST"); // Change the
+  request method to POST
+
+  const requestWithHeader = helper.addHeader(newRequest, "Content-Length: 0");
+  // Add the Content-Length header with a value of 0
+
+
+  return requestWithHeader;

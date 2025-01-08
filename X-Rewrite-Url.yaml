@@ -1,0 +1,13 @@
+id: X-Rewrite-Url
+description: add the X-Rewrite-Url as header
+enabled: true
+modificationScript: >-
+  const newRequest = helper.addHeader(input, "X-Rewrite-Url: " +
+  helper.getPath(input)); // Add the original path in the X-Rewrite-Url header
+
+
+  const adjustedRequest = helper.setPath(newRequest, () => "/"); // Set the path
+  to root
+
+
+  return adjustedRequest;
