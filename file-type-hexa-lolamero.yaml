@@ -1,0 +1,22 @@
+const modifiedRequests = [];
+
+const hexRange = Array.from({ length: 256 }, (_, i) => `%${i.toString(16).padStart(2, "0")}`);
+const fileExtensions = [".txt", ".json", ".php", ".html", ".js", ".xml", ".xhtml", ".jspx", ".apsx", ".exe"];
+
+hexRange.forEach((hex) => {
+  fileExtensions.forEach((ext) => {
+    const newRequest = helper.setPath(input, (prev) => {
+      const segments = prev.split('/');
+      if (segments.length > 1) {
+        // Replace the last segment with the new combination
+        segments[segments.length - 1] = `${hex}${segments[segments.length - 1]}${ext}`;
+      }
+      return segments.join('/');
+    });
+
+    // Add the modified request to the list
+    modifiedRequests.push(newRequest);
+  });
+});
+
+return modifiedRequests;
